@@ -1,0 +1,29 @@
+# Define how Unity YAML files are handled
+*.cs text
+*.cginc text
+*.shader text
+*.yml text
+*.asmdef text
+*.json text
+*.prefab text
+*.unity text
+*.mat text
+
+# Treat all binary files as binary, preventing Git from attempting text diffs
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.fbx binary
+*.mp4 binary
+*.ogg binary
+*.wav binary
+*.mp3 binary
+*.tga binary
+*.psd binary
+*.anim binary
+*.meta merge=union
+
+# Handle Unity-generated large asset files (if you use Git LFS)
+# These are examples, uncomment if using LFS
+# *.psd filter=lfs diff=lfs merge=lfs -text
+# *.fbx filter=lfs diff=lfs merge=lfs -text
