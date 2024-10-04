@@ -22,14 +22,8 @@ public class FireLightMaker : MonoBehaviour
 
     private void Update()
     {
-        while (isActivated)
-        {
-            float intensityChange = Mathf.Lerp(fireLight.intensity, endIntensity, fireSpeed * Time.deltaTime);
 
-            if (fireLight.intensity <= endIntensity && intensityChange <= endIntensity)
-            {
-                float intensityBack = Mathf.Lerp(fireLight.intensity, savedIntensity, fireSpeed * Time.deltaTime);
-            }
-        }
     }
 }
+
+
