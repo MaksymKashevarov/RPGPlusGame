@@ -13,7 +13,12 @@ public class IconInformer : MonoBehaviour
     public TextAsset jsonFile;
     private jsonReader jsonReader;
     public TextMeshProUGUI textBox;
+    private ClasssSpawner spawnerScript;
     Dictionary<string, string> raceDict;
+    private Outliner outlinerScript;
+    //private string savedRace;
+    public CharCreatorManager cManager;
+
 
     private void Start()
     {
@@ -28,6 +33,21 @@ public class IconInformer : MonoBehaviour
         guiElement.SetActive(false);
         Debug.Log("JSON Content: " + jsonFile.text);
         playerData = FindObjectOfType<PlayerData>();
+        spawnerScript = FindObjectOfType<ClasssSpawner>();
+        cManager = FindAnyObjectByType<CharCreatorManager>();
+        List<string> prefabList = spawnerScript.raceList;
+        if (prefabList != null && prefabList.Count > 0)
+        {
+            foreach (string prefab in prefabList)
+            {
+                Debug.Log($"List value initialized: {prefab}");
+            }
+        }
+        else
+        {
+            Debug.LogError("No data in the list of races!");
+        }
+       
         jsonReader = JsonConvert.DeserializeObject<jsonReader>(jsonFile.text);
         if (jsonReader == null)
         {
@@ -53,10 +73,13 @@ public class IconInformer : MonoBehaviour
         }
 
         Debug.Log("Number of races: " + raceDict.Count);
+        outlinerScript = GetComponent<Outliner>();
+        outlinerScript.enabled = false;
 
     }
     private void OnMouseEnter()
     {
+        outlinerScript.enabled = true;
         guiElement.SetActive(true);
         displayData();
     }
@@ -69,7 +92,7 @@ public class IconInformer : MonoBehaviour
             string value = raceDict[prefabName];
             Debug.Log(value);
             textBox.text = value;
-            Debug.Log("Text Changed: " + textBox.text);
+            Debug.Log("Text Changed: " + textBox.text);           
         }
         else
         {
@@ -77,9 +100,37 @@ public class IconInformer : MonoBehaviour
         }
         
     }
+    private void OnMouseDown()
+    {
+        Debug.Log("Check");
+        if (!cManager.buttonSpawn)
+        {
+            cManager.selectedRace = gameObject.name;
+            Debug.Log($"Name saved! {cManager.selectedRace}");
+            cManager.buttonSpawn = true;
+        }
+        else 
+        {
+            cManager.selectedRace = null;
+            Debug.Log($"Name discarded! {cManager.selectedRace}");
+            cManager.buttonSpawn = false; 
+        }
+/*      savedRace = gameObject.name;
+        if (savedRace == gameObject.name)
+        {
+            Debug.Log($"Race saved as str variable: {savedRace}");
+            
+        }
+        else
+        {
+            Debug.LogError($"Race name wasnt saved! {savedRace}");
+        }
+*/  
+    }
 
     private void OnMouseExit()
     {
+        outlinerScript.enabled = false;
         guiElement.SetActive(false);
     }
 

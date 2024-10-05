@@ -2,6 +2,7 @@
   "races": {
     "Human": "The human race, once mighty, now teeters on the edge of extinction. Their cities lie in ruins, and hope fades as darkness consumes their world. Haunted by past sins, they fight desperately to survive against the creeping void.",
     "Ogre": "Check2",
-    "WIP": "This icon is currently under maintenance"
+    "WIP": "This icon is currently under maintenance",
+     "Test": "Check"
   }
 }
