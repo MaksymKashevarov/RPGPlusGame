@@ -18,6 +18,7 @@ public class IconInformer : MonoBehaviour
     private Outliner outlinerScript;
     //private string savedRace;
     public CharCreatorManager cManager;
+    public bool isClickable;
 
 
     private void Start()
@@ -75,6 +76,7 @@ public class IconInformer : MonoBehaviour
         Debug.Log("Number of races: " + raceDict.Count);
         outlinerScript = GetComponent<Outliner>();
         outlinerScript.enabled = false;
+        isClickable = true;
 
     }
     private void OnMouseEnter()

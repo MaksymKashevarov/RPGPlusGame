@@ -20,8 +20,40 @@ public class CharCreatorManager : MonoBehaviour
         selectionButton.SetActive(false);
         spawnerScript = FindObjectOfType<ClasssSpawner>();
         buttonSpawn = false;
-        playerData = GetComponent<PlayerData>();
+        playerData = FindObjectOfType<PlayerData>();
         iconInformer = GetComponent<IconInformer>();
+    }
+
+    public void recieveAndProceed(bool command, string aprrovedRace)
+    {
+        if (command)
+        {
+            if (playerData != null)
+            {
+                playerData.recievePlayerClass(aprrovedRace);
+                playerData.classSelected = true;
+            }
+            else
+            {
+                Debug.LogError("playerData is null! Check if the PlayerData component is attached.");
+            }
+
+            if (spawnerScript != null)
+            {
+                foreach (GameObject obj in spawnerScript.createdClasses)
+                {
+                    obj.SetActive(false);
+                }
+            }
+            else
+            {
+                Debug.LogError("spawnerScript is null! Check if ClasssSpawner exists in the scene.");
+            }
+
+            buttonSpawn = false;
+            selectionButton.SetActive(false);
+        }
+    
     }
 
 
@@ -53,7 +85,6 @@ public class CharCreatorManager : MonoBehaviour
         {
             selectionButton.SetActive(false);
         }
-
-        
     }
+
 }

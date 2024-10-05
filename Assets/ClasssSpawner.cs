@@ -13,7 +13,7 @@ public class ClasssSpawner : MonoBehaviour
     public Transform canvasScreen;
     public GameObject iconPrefab;
     public IconInformer iconInformer;
-    public List<GameObject> createdClasses = new List<GameObject>();
+    public List<GameObject> createdClasses = new();
     private float spacing = 1.8f;
     public bool classesSpawned;
 

@@ -10,12 +10,18 @@ public class PlayerData : MonoBehaviour
     public bool classSelected;
     
 
-    private void Start()
+    public void Start()
     {
         hp = 100;
         race = "Human";
         playerClass = "Undefined";
         classSelected = false;
         Debug.Log($"HP: {hp} Race: {race}");
+    }
+
+    public void recievePlayerClass(string recievedRace)
+    {
+        Debug.Log($"Player recieved class: {recievedRace}");
+        race = recievedRace;
     }
 }

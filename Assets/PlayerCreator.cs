@@ -25,6 +25,8 @@ public class PlayerCreator : MonoBehaviour
     {
         if (playerData.classSelected == true)
         {
+            healthPoints.SetActive(true);
+            race.SetActive(true);
             hpTextMesh.text = $"Health: {playerData.hp}";
             raceTextMesh.text = $"Race: {playerData.race}";
         }
